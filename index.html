@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Document</title>
+</head>
+<body class="container">
+    <div class="alert" id="alert">
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+        Please insert a title!
+      </div>
+
+    <div class="form">
+    <h1>ToDo</h1>
+    <form>
+    <input type="text" placeholder="Title" class="title" id="title">
+    <textarea placeholder="Describtion" cols="30" rows="10" id="desc"></textarea>
+<button id="submit">Submit</button>
+</form>
+</div>
+<hr>
+<ul id="main">
+    <li>
+        <h3>Title</h3>
+        <p>Describtion</p>
+    </li>
+</ul>
+<script src="index.js"></script>
+</body>
+</html>
