@@ -11,7 +11,15 @@ const makeNewTodo = (title,desc,id,checked)=>{
     const li = document.createElement("li");
     li.id = id;
     const h3 = document.createElement("h3");
-    h3.innerHTML = title;
+    const todoInput = document.createElement("input");
+    todoInput.defaultValue = title;
+    h3.appendChild(todoInput);
+    todoInput.disabled = true;
+    // h3.innerHTML = title;
+    todoInput.style.backgroundColor= "transparent";
+    todoInput.style.border = "none";
+    todoInput.style.fontSize = "inherit";
+    todoInput.style.outline = "none";
     const p = document.createElement("p");
     p.innerHTML = desc;
     
@@ -91,5 +99,22 @@ todoMain.addEventListener("click" , (e) =>{
         const updateSavedTodos = [...deleteLCData, updateLcTodo];
         localStorage.setItem("lcTodo" , JSON.stringify(updateSavedTodos));
         location.reload();
+    }
+    else if (e.target.innerText === "Edit"){
+    const inpuntEdit = e.target.parentElement.parentElement;
+    inpuntEdit.children[0].children[0].disabled = false;
+    inpuntEdit.children[0].children[0].select();
+    e.target.innerText = "save";
+    e.target.addEventListener('click' , ()=> {
+        // inpuntEdit.children[0].children[0].value;
+        // inpuntEdit.id;
+        const deleteLC = lcSave.filter((item) => item.id === Number(inpuntEdit.id));
+        const updateLcTodo = {...deleteLC[0], title: inpuntEdit.children[0].children[0].value};
+        const deleteLCData = lcSave.filter((item) => item.id !== Number(inpuntEdit.id));
+        const updateSavedTodos = [...deleteLCData, updateLcTodo];
+        localStorage.setItem("lcTodo" , JSON.stringify(updateSavedTodos));
+        location.reload();
+    });
+
     }
 });
